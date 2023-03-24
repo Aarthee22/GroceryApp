@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+<body>
+	{% block content %}
+	<form action="" method="post">
+		{% csrf_token %}
+        {% if request.user.is_superuser %}
+  		    {{form.as_p}}
+  	        <input type="submit" value="Submit">
+        {% else %}
+            The logged in user is not a super user
+                Please login as superuser to add/modify data
+        {% endif %}
+	</form>
+	{% endblock %}
+</body>

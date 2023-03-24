@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+<body>
+	{% block content %}
+	<form action="" method="post">
+		{% csrf_token %}
+        {% if request.user.is_superuser %}
+            Are you sure you want to delete the data of the user {{object.name}}?
+            <br><br>
+  	        <Button type="submit">Delete</Button>&emsp;&emsp;
+            <a role=""button" href="{%url 'userdetail' object.id%}">Cancel</a>
+        {% else %}
+            The logged in user is not a super user. Please login as superuser to add/modify data
+        {% endif %}
+	</form>
+	{% endblock %}
+</body>
